@@ -1,0 +1,67 @@
+---
+import "../styles/global.css";
+import type {AstroGlobal} from 'astro';
+
+const site = {
+  title: 'crearMedia · Expo AMEDIRH',
+  description: 'Visítanos en Expo Santa Fe - AMEDIRH. Demos en vivo: automatización de RR.HH., selección y comunicación omnicanal.',
+  url: 'https://crearmedia.com/expo-amedirh',
+  image: 'https://crearmedia.com/assets/og-amedirh.png'
+}
+
+// JSON-LD stubs (Event + Organization) - can be extended per page
+const eventLd = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Expo Santa Fe - AMEDIRH: crearMedia demos",
+  "startDate": "2025-11-12",
+  "location": {
+    "@type": "Place",
+    "name": "Expo Santa Fe",
+    "address": "Bogotá, Colombia"
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "crearMedia",
+    "url": "https://crearmedia.com"
+  }
+}
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>{site.title}</title>
+    <meta name="description" content={site.description} />
+    <link rel="canonical" href={site.url} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={site.title} />
+    <meta property="og:description" content={site.description} />
+    <meta property="og:image" content={site.image} />
+    <meta property="og:url" content={site.url} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={site.title} />
+    <meta name="twitter:description" content={site.description} />
+    <meta name="twitter:image" content={site.image} />
+
+    <link rel="alternate" hrefLang="es" href={site.url} />
+
+    <script type="application/ld+json">{JSON.stringify(eventLd)}</script>
+  </head>
+  <body class="antialiased bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+    <a class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-cm-500 text-white px-3 py-2 rounded-md" href="#main">Saltar al contenido</a>
+    <slot name="header" />
+    <main id="main" class="min-h-screen">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>

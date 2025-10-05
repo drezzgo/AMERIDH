@@ -12,3 +12,20 @@
     --color-cm-800: #306523;
     --color-cm-900: #254e1b;
 }
+
+:root {
+    /* Expose a shorthand token used in components */
+    --cm-500: var(--color-cm-500);
+}
+
+/* Accessible utilities */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* Focus-visible styles for keyboard users */
+:where(:focus-visible) { outline: none; }
+.focus-visible\:ring-cm-500:focus-visible { box-shadow: 0 0 0 4px rgba(94,186,71,0.18); }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}

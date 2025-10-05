@@ -1,0 +1,30 @@
+---
+export interface Props {
+  id?: string
+  name?: string
+  type?: string
+  value?: string
+  placeholder?: string
+  required?: boolean
+  ariaLabel?: string
+}
+
+export let id: Props['id'] = '';
+export let name: Props['name'] = '';
+export let type: Props['type'] = 'text';
+export let value: Props['value'] = '';
+export let placeholder: Props['placeholder'] = '';
+export let required: Props['required'] = false;
+export let ariaLabel: Props['ariaLabel'] = '';
+---
+
+<input
+  id={id}
+  name={name}
+  type={type}
+  value={value}
+  placeholder={placeholder}
+  required={required}
+  aria-label={ariaLabel}
+  class="block w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus-visible:ring-4 focus-visible:ring-cm-500 transition-colors duration-150"
+/>

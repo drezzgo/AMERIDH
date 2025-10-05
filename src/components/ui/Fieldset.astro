@@ -1,0 +1,12 @@
+---
+export interface Props {
+  legend?: string
+}
+
+export let legend: Props['legend'] = '';
+---
+
+<fieldset class="border-none p-0 m-0">
+  {legend ? <legend class="text-sm font-semibold mb-2">{legend}</legend> : null}
+  <slot />
+</fieldset>

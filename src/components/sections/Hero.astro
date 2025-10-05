@@ -1,0 +1,36 @@
+---
+import Button from '../ui/Button.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+---
+
+<section id="hero" class="relative overflow-hidden bg-white dark:bg-gray-900 py-16 md:py-24">
+  <div class="container mx-auto px-6 md:px-8 max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <div>
+      <p class="text-sm font-medium text-cm-500">Expo Santa Fe — AMEDIRH · Stand B12</p>
+      <h1 class="mt-3 text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100 leading-tight">
+        crearMedia para Recursos Humanos
+      </h1>
+      <p class="mt-4 text-lg text-gray-700 dark:text-gray-300 max-w-xl">
+        Atrae talento y automatiza la comunicación con candidatos y clientes desde un solo panel.
+        En Expo AMEDIRH te mostramos demos en vivo y casos reales de reducción de tiempo en selección.
+      </p>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <Button as="a" href="#contact" variant="primary" size="md">Agenda una demo</Button>
+        <Button as="a" href="/assets/dossier-amedirh.pdf" variant="secondary" size="md">Descarga dossier</Button>
+      </div>
+
+      <ul class="mt-6 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <li class="flex items-center gap-2"><strong class="text-cm-500">+20%</strong> eficiencia en procesos</li>
+        <li class="flex items-center gap-2"><strong class="text-cm-500">+30%</strong> mejora en respuesta</li>
+      </ul>
+    </div>
+
+    <div class="relative">
+      <div class="w-full aspect-[4/3] bg-gradient-to-br from-cm-100 to-cm-300 rounded-xl shadow-lg overflow-hidden flex items-center justify-center">
+        <!-- Placeholder image: replace with optimized asset in /public -->
+        <img src="/assets/astro.svg" alt="Demo crearMedia" width="640" height="480" class="object-cover w-full h-full" loading="lazy" decoding="async"/>
+      </div>
+    </div>
+  </div>
+</section>

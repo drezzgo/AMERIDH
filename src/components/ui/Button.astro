@@ -1,0 +1,119 @@
+---
+export let as = 'button';
+export let href = '';
+export let variant = 'primary';
+export let size = 'md';
+export let type = 'button';
+export let disabled = false;
+
+// size and variant maps
+const sizes = {
+  sm: 'px-3 py-2 text-sm rounded-md',
+  md: 'px-5 py-3 text-base rounded-lg',
+  lg: 'px-6 py-4 text-lg rounded-xl'
+};
+
+const variants = {
+  primary: 'bg-[color:var(--cm-500)] text-white shadow-sm hover:shadow-md',
+  secondary: 'bg-white text-[color:var(--cm-500)] border border-[color:var(--cm-500)] hover:bg-[color:var(--cm-500)/6]',
+  ghost: 'bg-transparent text-[color:var(--cm-500)] hover:bg-[color:var(--cm-500)/8]'
+};
+
+const base = 'inline-flex items-center justify-center font-semibold transition-transform duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-4 focus-visible:ring-[color:var(--cm-500)]';
+const computedSize = sizes[size] ?? sizes.md;
+const computedVariant = variants[variant] ?? variants.primary;
+const classes = `${base} ${computedSize} ${computedVariant}`;
+const isAnchor = as === 'a';
+---
+
+{isAnchor ? (
+  <a class={classes} href={href} aria-disabled={disabled ? 'true' : 'false'}>
+    <slot />
+  </a>
+) : (
+  <button class={classes} type={type} disabled={disabled}>
+    <slot />
+  </button>
+)}
+export let as = 'button';
+export let href = '';
+export let variant = 'primary';
+export let size = 'md';
+export let type = 'button';
+export let disabled = false;
+
+// Button component using Tailwind utilities and the repo token `--cm-500`.
+// Accessible by default (focus-visible, aria-disabled for anchors).
+
+const sizes = {
+  sm: 'px-3 py-2 text-sm rounded-md',
+  md: 'px-5 py-3 text-base rounded-lg',
+  lg: 'px-6 py-4 text-lg rounded-xl'
+};
+
+const variants = {
+  primary: 'bg-[color:var(--cm-500)] text-white shadow-sm hover:shadow-md hover:translate-y-0.5',
+  secondary: 'bg-white text-[color:var(--cm-500)] border border-[color:var(--cm-500)] hover:bg-[color:var(--cm-500)/6]',
+  ghost: 'bg-transparent text-[color:var(--cm-500)] hover:bg-[color:var(--cm-500)/8]'
+};
+
+const base = 'inline-flex items-center justify-center font-semibold transition-transform duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-4 focus-visible:ring-[color:var(--cm-500)]';
+const classes = `${base} ${sizes[size]} ${variants[variant]}`;
+const isAnchor = as === 'a';
+---
+
+{isAnchor ? (
+  <a class={classes} href={href} aria-disabled={disabled ? 'true' : 'false'}>
+    <slot />
+  </a>
+) : (
+  <button class={classes} type={type} disabled={disabled}>
+    <slot />
+  </button>
+)}
+---
+export interface Props {
+  as?: 'button' | 'a'
+  href?: string
+  variant?: 'primary' | 'secondary' | 'ghost'
+  size?: 'sm' | 'md' | 'lg'
+  ---
+  export let as = 'button';
+  export let href = '';
+  export let variant = 'primary';
+  export let size = 'md';
+  export let type = 'button';
+  export let disabled = false;
+
+  // Button component using Tailwind utilities and the repo token `--cm-500`.
+  // Accessible by default (focus-visible, aria-disabled for anchors).
+
+  const sizes = {
+    sm: 'px-3 py-2 text-sm rounded-md',
+    md: 'px-5 py-3 text-base rounded-lg',
+    lg: 'px-6 py-4 text-lg rounded-xl'
+  };
+
+  const variants = {
+    primary: 'bg-[color:var(--cm-500)] text-white shadow-sm hover:shadow-md',
+    secondary: 'bg-white text-[color:var(--cm-500)] border border-[color:var(--cm-500)] hover:bg-[color:var(--cm-500)/6]',
+    ghost: 'bg-transparent text-[color:var(--cm-500)] hover:bg-[color:var(--cm-500)/8]'
+  };
+
+  const base = 'inline-flex items-center justify-center font-semibold transition-transform duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-4 focus-visible:ring-[color:var(--cm-500)]';
+
+  const computedSize = sizes[size] ?? sizes.md;
+  const computedVariant = variants[variant] ?? variants.primary;
+  const classes = `${base} ${computedSize} ${computedVariant}`;
+  const isAnchor = as === 'a';
+  ---
+
+  {isAnchor ? (
+    <a class={classes} href={href} aria-disabled={disabled ? 'true' : 'false'}>
+      <slot />
+    </a>
+  ) : (
+    <button class={classes} type={type} disabled={disabled}>
+      <slot />
+    </button>
+  )}

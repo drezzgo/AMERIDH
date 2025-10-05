@@ -1,26 +1,26 @@
 ---
 const items = [
   {
-    title: "Nuevo modelo",
-    text: "Aprende cómo usar IA adaptativa para capacitar mejor y más rápido.",
+    title: "IA Adaptativa",
+    text: "Simulaciones inteligentes que personalizan el aprendizaje y miden el progreso real.",
     highlight: "",
     extra: "",
   },
   {
-    title: "Casos reales",
-    text: "Verás cómo ya lo aplican empresas líderes en LATAM.",
+    title: "Diagnóstico Inteligente",
+    text: "Descubre las brechas y oportunidades ocultas de tu equipo con un análisis profesional.",
     highlight: "",
     extra: "",
   },
   {
-    title: "Liderazgo visible",
-    text: "Destaca tu área con una estrategia moderna y efectiva.",
+    title: "Gamificación y Realidad Virtual",
+    text: "Convierte cada capacitación en una experiencia inmersiva, lúdica y memorable..",
     highlight: "",
     extra: "",
   },
   {
-    title: "Resultados reales",
-    text: "Mejora el desempeño y cumplimiento desde el primer curso.",
+    title: "Cursos a la Medida",
+    text: "Diseñamos rutas de aprendizaje únicas, alineadas a la cultura y los retos de tu empresa..",
     highlight: "",
     extra: "",
   },
@@ -34,7 +34,7 @@ const items = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
       {items.map((item) => (
         <div class="group relative h-full flex flex-col">
-          <!-- 2) Glow sólo en pantallas md+ -->
+          {/* <!-- 2) Glow sólo en pantallas md+ --> */}
           <div
             class="
               hidden md:block
@@ -48,7 +48,7 @@ const items = [
             aria-hidden="true"
           ></div>
 
-          <!-- 3) TARJETA PRINCIPAL (hijo de grid con h-full) -->
+          {/* <!-- 3) TARJETA PRINCIPAL (hijo de grid con h-full) --> */}
           <div
             class="
               relative overflow-hidden rounded-2xl 
@@ -61,7 +61,7 @@ const items = [
               md:hover:shadow-none <!-- en móvil ligera sombra, en md+ se aplica glow + scale -->
             "
           >
-            <!-- Línea degradé superior -->
+            {/* <!-- Línea degradé superior --> */}
             <div
               class="
                 absolute top-0 left-8 
@@ -71,7 +71,7 @@ const items = [
               "
             ></div>
 
-            <!-- Contenido con padding bottom para empujar hacia arriba si faltan elementos -->
+            {/* <!-- Contenido con padding bottom para empujar hacia arriba si faltan elementos --> */}
             <div class="relative h-full flex flex-col">
               <h3 class="text-gray-700 dark:text-gray-300 text-base font-bold mb-2">
                 {item.title}
@@ -83,7 +83,7 @@ const items = [
                 </span>
                 {item.extra}
               </p>
-              <!-- Opcional: aquí podrías agregar un botón o link en la parte inferior -->
+                {/* <!-- Opcional: aquí podrías agregar un botón o link en la parte inferior --> */}
             </div>
           </div>
         </div>

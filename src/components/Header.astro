@@ -70,7 +70,7 @@ const logoDark  = 'https://crearmedia.com/wp-content/uploads/2025/06/logo1.svg';
 
 
 <script>
-  var countdownDate = new Date("Jul 17, 2025 11:00:00").getTime();
+  var countdownDate = new Date("Oct 22, 2025 08:00:00").getTime();
   var x = setInterval(function () {
     var now = new Date().getTime();
     var distance = countdownDate - now;
@@ -94,6 +94,19 @@ const logoDark  = 'https://crearmedia.com/wp-content/uploads/2025/06/logo1.svg';
     const hoursElement = document.getElementById("hours");
     const minutesElement = document.getElementById("minutes");
     const secondsElement = document.getElementById("seconds");
+    // If the countdown has reached zero or passed, stop interval and hide the counter
+    const countdownContainer = document.getElementById('countdown');
+    if (distance <= 0) {
+      // clear interval to stop updates
+      clearInterval(x);
+      // hide the visual counter and mark it hidden for assistive tech
+      if (countdownContainer) {
+        countdownContainer.style.display = 'none';
+        countdownContainer.setAttribute('aria-hidden', 'true');
+      }
+      // Optionally you could display an alternative message here
+      return;
+    }
 
     if (daysElement) daysElement.innerHTML = days;
     if (hoursElement) hoursElement.innerHTML = hours;

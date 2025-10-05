@@ -26,20 +26,20 @@ const eventJsonLd = {
     <!-- COLUMNA IZQUIERDA: TÍTULO, DESCRIPCIÓN, CTA -->
     <div class="text-center md:text-left space-y-6">
       <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100">
-        ¡Reserva tu acceso ahora!<br>
+        Reserva tu consulta personalizada con nuestro CEO<br>
         <span class="bg-clip-text text-transparent bg-gradient-to-r from-cm-500 to-teal-500">
-          Cupos limitados
+          Solo para asistentes de AMEDIRH 2025.
         </span>
       </h2>
       <p class="text-lg text-gray-700 dark:text-gray-300">
-        Este entrenamiento no estará disponible por mucho tiempo. Completa el formulario y descubre cómo aplicar el modelo adaptativo en tu empresa.
+        Llena tus datos y recibe acceso prioritario a demos, diagnósticos y descuentos exclusivos.
       </p>
       <button
         id="cta-button"
         class="relative inline-flex items-center justify-center bg-gradient-to-r from-cm-500 to-teal-500 text-white font-semibold text-lg py-3 px-8 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl"
         aria-label="Mostrar formulario de registro"
       >
-        Reserva tu cupo ahora
+        Descubre la magia ahora
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
              viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -55,10 +55,12 @@ const eventJsonLd = {
     <div id="form-container"
          class="relative bg-white/30 dark:bg-gray-800/30 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-xl p-8 shadow-lg transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-2xl"
     >
-      <h3 class="text-2xl font-semibold text-center mb-6 text-gray-900 dark:text-gray-100">
-        Regístrate Gratis
-      </h3>
-
+      <div class="flex justify-center gap-1">
+        <h3 class="text-2xl font-semibold text-center mb-6 text-gray-900 dark:text-gray-100">
+          Aquí comienza la <span class="bg-clip-text text-transparent font-extrabold bg-gradient-to-r from-cm-500 to-teal-500">magIA</span>
+        </h3>
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1.5"  stroke-linecap="round"  stroke-linejoin="round"  class="mt-1 icon icon-tabler icons-tabler-outline icon-tabler-wand"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 21l15 -15l-3 -3l-15 15l3 3" /><path d="M15 6l3 3" /><path d="M9 3a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" /><path d="M19 13a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" /></svg>
+      </div>
               <!-- IFRAME OCULTO para enviar los datos sin navegar -->
         <iframe name="hidden_iframe" class="hidden" aria-hidden="true"></iframe>
 
@@ -75,7 +77,7 @@ const eventJsonLd = {
             <!-- EMAIL (obligatorio) -->
             <div>
               <label for="mce-EMAIL" class="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">
-                Correo electrónico <span class="text-red-500">*</span>
+                Correo electrónico de empresa <span class="text-red-500">*</span>
               </label>
               <input
                 type="email"
@@ -105,9 +107,10 @@ const eventJsonLd = {
             <!-- WHATSAPP (opcional) -->
             <div>
               <label for="mce-PHONE" class="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">
-                Número de WhatsApp (Opcional)
+                Número de WhatsApp
               </label>
               <input
+              required
                 type="tel"
                 name="PHONE"
                 id="mce-PHONE"
@@ -117,7 +120,7 @@ const eventJsonLd = {
             </div>
 
             <!-- TÉRMINOS Y CONDICIONES (obligatorio) -->
-            <div>
+            <div class="mt-4">
               <label class="flex items-center text-sm text-gray-800 dark:text-gray-200">
                 <input
                   type="checkbox"
@@ -134,6 +137,9 @@ const eventJsonLd = {
                   <span class="text-red-500">*</span>
                 </span>
               </label>
+
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                Nos pondremos en contacto contigo para coordinar tu experiencia personalizada. Cupos limitados durante la feria.
             </div>
 
             <!-- RESPUESTAS DE MAILCHIMP -->
@@ -151,7 +157,7 @@ const eventJsonLd = {
             <div>
               <input
                 type="submit"
-                value="Subscribe"
+                value="Agendar cita estratégica"
                 name="subscribe"
                 id="mc-embedded-subscribe"
                 class="w-full inline-flex items-center justify-center bg-gradient-to-r from-cm-500 to-teal-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl"

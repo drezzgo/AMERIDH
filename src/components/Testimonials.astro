@@ -1,0 +1,127 @@
+---
+// src/components/Testimonials.astro
+---
+
+<section class="py-32 px-6 md:px-12 bg-white dark:bg-gray-900 transition-colors duration-300">
+  <div class="container mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+      Historias reales de transformación
+    </h2>
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-16 max-w-2xl mx-auto">
+      Mira lo que dicen líderes que ya aplicaron este modelo en sus organizaciones.
+    </p>
+
+    <div class="relative mx-auto w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
+      <!-- MOCKUP MÁS GRANDE -->
+      <img
+        src="https://crearmedia.com/wp-content/uploads/2025/06/Celular-Landing_con-Sombra.webp"
+        alt="Celular mostrando la app de CrearMedia"
+        class="w-full h-auto py-12"
+        loading="lazy"
+      />
+
+      <!-- CARD 1 -->
+      <div
+        class="testimonial-card min-w-[220px] max-w-[260px]"
+        style="top: -8%; left: -18%; transform: rotate(-5deg);"
+      >
+        <p class="text-base mb-2">
+          “Entendieron lo que necesitábamos y <span class="font-semibold">lo creamos juntos</span>, con cercanía y estrategia.”
+        </p>
+        <p class="author">Marta L. | <span class="bg-clip-text text-transparent bg-cm-500">DollarCity</p>
+      </div>
+
+      <!-- CARD 2 -->
+      <div
+        class="testimonial-card min-w-[220px] max-w-[260px]"
+        style="top: 0%; right: -15%; transform: rotate(8deg);"
+      >
+        <p class="text-base mb-2">
+          “Más de <span class="font-semibold">6,000 colaboradores</span> formados con +90% de aprovechamiento.”
+        </p>
+        <p class="author">Verónica D. | <span class="bg-clip-text text-transparent bg-cm-500">ADO</p>
+      </div>
+
+      <!-- CARD 3 -->
+      <div
+        class="testimonial-card min-w-[220px] max-w-[260px]"
+        style="bottom: 5%; left: -20%; transform: rotate(3deg);"
+      >
+        <p class="text-base mb-2">
+          “Tradujeron nuestra metodología en videos clave. <span class="font-semibold">Creatividad, técnica y resultados</span> que presentamos al Tec de Monterrey.”
+        </p>
+        <p class="author">Jesús M. | <span class="bg-clip-text text-transparent bg-cm-500">GEPP</p>
+      </div>
+
+      <!-- CARD 4 -->
+      <div
+        class="testimonial-card min-w-[220px] max-w-[260px]"
+        style="bottom: 5%; right: -22%; transform: rotate(-6deg);"
+      >
+        <p class="text-base mb-2">
+          “Creamos un modelo educativo referente en LATAM. Lo que logramos con CrearMedia superó por mucho lo esperado.”
+        </p>
+        <p class="author">Eliana S. | <span class="bg-clip-text text-transparent bg-cm-500">Banco ADOPEM</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+  /* Glassmorphic + animación original */
+  .testimonial-card {
+    position: absolute;
+    min-width: 200px;
+    max-width: 240px;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.6);
+    color: #1f2937; /* text-gray-800 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 10;
+  }
+
+  /* Hover: ligero scale y sombra */
+  .testimonial-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .author {
+    font-size: 0.875rem; /* text-sm */
+    opacity: 0.8;
+  }
+
+  /* Modo oscuro */
+  @media (prefers-color-scheme: dark) {
+    .testimonial-card {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #f3f4f6; /* text-gray-100 */
+    }
+  }
+
+  /* Responsive: apilar en móvil */
+  @media (max-width: 640px) {
+    .testimonial-card {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      transform: none !important;
+      margin: 1rem auto;
+      max-width: 90%;
+      min-width: auto;
+      padding: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .testimonial-card:hover {
+      transform: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+</style>

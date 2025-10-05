@@ -1,0 +1,93 @@
+---
+const items = [
+  {
+    title: "Nuevo modelo",
+    text: "Aprende cómo usar IA adaptativa para capacitar mejor y más rápido.",
+    highlight: "",
+    extra: "",
+  },
+  {
+    title: "Casos reales",
+    text: "Verás cómo ya lo aplican empresas líderes en LATAM.",
+    highlight: "",
+    extra: "",
+  },
+  {
+    title: "Liderazgo visible",
+    text: "Destaca tu área con una estrategia moderna y efectiva.",
+    highlight: "",
+    extra: "",
+  },
+  {
+    title: "Resultados reales",
+    text: "Mejora el desempeño y cumplimiento desde el primer curso.",
+    highlight: "",
+    extra: "",
+  },
+];
+---
+
+<section class="bg-white dark:bg-gray-900 transition-colors duration-300 py-12">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <!-- 1) GRID que hace que todas las tarjetas estiren a misma altura -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+      {items.map((item) => (
+        <div class="group relative h-full flex flex-col">
+          <!-- 2) Glow sólo en pantallas md+ -->
+          <div
+            class="
+              hidden md:block
+              absolute -inset-1 
+              bg-gradient-to-tr from-cm-green-500 to-teal-500 
+              opacity-25 blur-3xl 
+              transition duration-1000 
+              group-hover:opacity-100 group-hover:duration-200 
+              rounded-2xl
+            "
+            aria-hidden="true"
+          ></div>
+
+          <!-- 3) TARJETA PRINCIPAL (hijo de grid con h-full) -->
+          <div
+            class="
+              relative overflow-hidden rounded-2xl 
+              bg-white/30 dark:bg-gray-800/30
+              backdrop-blur-lg
+              border border-gray-200 dark:border-gray-700
+              p-6 flex-1  <!-- flex-1 hace crecer al contenido para igualar alturas -->
+              transition-transform duration-300 ease-in-out
+              hover:scale-105 hover:shadow-2xl
+              md:hover:shadow-none <!-- en móvil ligera sombra, en md+ se aplica glow + scale -->
+            "
+          >
+            <!-- Línea degradé superior -->
+            <div
+              class="
+                absolute top-0 left-8 
+                w-1/2 h-1 
+                bg-gradient-to-r from-cm-500 to-teal-500
+                rounded-br-full
+              "
+            ></div>
+
+            <!-- Contenido con padding bottom para empujar hacia arriba si faltan elementos -->
+            <div class="relative h-full flex flex-col">
+              <h3 class="text-gray-700 dark:text-gray-300 text-base font-bold mb-2">
+                {item.title}
+              </h3>
+              <p class="text-gray-700 dark:text-gray-300 text-base flex-1">
+                {item.text}
+                <span class="text-cm-green-500 dark:text-cm-green-300 font-semibold">
+                  {item.highlight}
+                </span>
+                {item.extra}
+              </p>
+              <!-- Opcional: aquí podrías agregar un botón o link en la parte inferior -->
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

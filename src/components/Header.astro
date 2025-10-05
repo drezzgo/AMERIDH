@@ -1,0 +1,104 @@
+---
+// src/components/Header.astro
+import { Image } from 'astro:assets';
+
+const logoLight = 'https://crearmedia.com/wp-content/uploads/2025/06/logo.svg';
+const logoDark  = 'https://crearmedia.com/wp-content/uploads/2025/06/logo1.svg';
+---
+
+<header class="fixed inset-x-0 top-0 z-50 bg-white/30 dark:bg-gray-800/30 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700">
+  <div class="container mx-auto max-w-5xl flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
+    <!-- Logo + Título -->
+    <div class="flex items-center gap-4 sm:gap-6">
+      <a href="https://crearmedia.com/" aria-label="Ir al inicio" class="flex-shrink-0">
+        <Image
+          src={logoLight}
+          alt="CrearMedia Logo"
+          width={110}
+          height={40}
+          class="block dark:hidden"
+          loading="lazy"
+        />
+        <Image
+          src={logoDark}
+          alt="CrearMedia Logo (Dark)"
+          width={110}
+          height={40}
+          class="hidden dark:block"
+          loading="lazy"
+        />
+      </a>
+      <!-- H1 oculto en xs para no chocar con el contador -->
+      <h1 class="hidden sm:block text-gray-800 dark:text-gray-200 font-semibold text-xl sm:text-2xl lg:text-3xl whitespace-nowrap">
+        Webinar&nbsp;
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-cm-500 to-teal-500">
+          IA Adaptativa
+        </span>
+      </h1>
+    </div>
+
+    <!-- Contador -->
+    <div class="relative flex items-center gap-2">
+      <!-- glow animado -->
+      <div aria-hidden="true"
+           class="absolute inset-0 rounded-full bg-gradient-to-br from-cm-green-600 via-teal-500 to-green-400 opacity-50 blur-3xl animate-pulse">
+      </div>
+      <div
+        id="countdown"
+        class="relative flex gap-1 sm:gap-2 overflow-x-auto no-scrollbar text-gray-900 dark:text-gray-200 font-mono text-xs sm:text-sm"
+      >
+        <div class="flex flex-col items-center bg-gray-50 dark:bg-gray-900 px-1.5 sm:px-3 py-0.5 sm:py-1 rounded-lg min-w-[3.5rem]">
+          <span id="days" class="text-lg sm:text-2xl">00</span>
+          <span class="uppercase text-[0.55rem] sm:text-xs">Días</span>
+        </div>
+        <div class="flex flex-col items-center bg-gray-50 dark:bg-gray-900 px-1.5 sm:px-3 py-0.5 sm:py-1 rounded-lg min-w-[3.5rem]">
+          <span id="hours" class="text-lg sm:text-2xl">00</span>
+          <span class="uppercase text-[0.55rem] sm:text-xs">Hrs</span>
+        </div>
+        <div class="flex flex-col items-center bg-gray-50 dark:bg-gray-900 px-1.5 sm:px-3 py-0.5 sm:py-1 rounded-lg min-w-[3.5rem]">
+          <span id="minutes" class="text-lg sm:text-2xl">00</span>
+          <span class="uppercase text-[0.55rem] sm:text-xs">Min</span>
+        </div>
+        <div class="flex flex-col items-center bg-gray-50 dark:bg-gray-900 px-1.5 sm:px-3 py-0.5 sm:py-1 rounded-lg min-w-[3.5rem]">
+          <span id="seconds" class="text-lg sm:text-2xl">00</span>
+          <span class="uppercase text-[0.55rem] sm:text-xs">Seg</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+<script>
+  var countdownDate = new Date("Jul 17, 2025 11:00:00").getTime();
+  var x = setInterval(function () {
+    var now = new Date().getTime();
+    var distance = countdownDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24))
+      .toString()
+      .padStart(2, "0");
+    var hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    )
+      .toString()
+      .padStart(2, "0");
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+      .toString()
+      .padStart(2, "0");
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000)
+      .toString()
+      .padStart(2, "0");
+
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+
+    if (daysElement) daysElement.innerHTML = days;
+    if (hoursElement) hoursElement.innerHTML = hours;
+    if (minutesElement) minutesElement.innerHTML = minutes;
+    if (secondsElement) secondsElement.innerHTML = seconds;
+  }, 1000);
+</script>

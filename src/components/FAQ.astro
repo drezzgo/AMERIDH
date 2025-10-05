@@ -1,0 +1,141 @@
+---
+// src/components/FAQ.astro
+
+// Datos de ejemplo de FAQs; ajústalos según necesites
+const faqs = [
+  {
+    question: "¿Cuánto dura el webinar?",
+    answer:
+      "Aproximadamente 45 minutos. Directo, claro y diseñado para darte valor desde el inicio.",
+  },
+  {
+    question: "¿Esto es solo para empresas grandes?",
+    answer:
+      "No. El modelo es adaptable. Ya ha funcionado en empresas medianas y grandes de distintos sectores.",
+  },
+  {
+    question: "¿Tiene costo?",
+    answer:
+      "No. El acceso es completamente gratuito por tiempo limitado.",
+  },
+  {
+    question: "¿Necesito saber de Inteligencia Artificial para entender el modelo?",
+    answer:
+      "No. Todo está explicado de forma simple. No necesitas experiencia previa en IA para aplicarlo.",
+  },
+  {
+    question: "¿Qué necesito para participar?",
+    answer:
+      "Necesitarás una conexión a internet estable y un dispositivo (computadora, tablet o smartphone) para acceder a la transmisión en vivo por ZOOM. Te enviaremos el enlace de acceso unos días antes del evento.",
+  },
+  // {
+  //   question: "¿Recibiré una grabación si no puedo asistir en vivo?",
+  //   answer:
+  //     "Sí, todos los inscritos recibirán acceso a la grabación del webinar para que puedas verlo a tu propio ritmo en caso de que no puedas asistir a la transmisión en vivo.",
+  // },
+  // {
+  //   question: "¿Este webinar es para mí si soy principiante?",
+  //   answer:
+  //     "¡Absolutamente! La metodología está diseñada para ser fácil de entender y aplicar, incluso si no tienes experiencia previa en marketing digital o captación de clientes.",
+  // },
+];
+
+// Construir el JSON-LD de FAQ para SEO
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer,
+    },
+  })),
+};
+---
+
+<section class="py-16 md:py-24 px-6 md:px-12 bg-white dark:bg-gray-900 transition-colors duration-300">
+  <div class="container mx-auto max-w-3xl">
+    <!-- TÍTULO REAJUSTADO -->
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900 dark:text-gray-100">
+      Preguntas Frecuentes
+    </h2>
+    <!-- SUBTÍTULO REAJUSTADO -->
+    <p class="text-lg text-gray-700 dark:text-gray-300 text-center mb-12">
+      Aquí resolvemos las dudas más comunes para que te sientas listo antes del webinar.
+    </p>
+
+    <!-- LISTA DE FAQS -->
+    <div class="space-y-6">
+      {faqs.map((item) => (
+        <details class="faq-item group relative">
+          <summary
+            class="
+              flex justify-between items-center
+              font-semibold text-lg
+              text-gray-900 dark:text-gray-100
+              cursor-pointer
+              select-none
+              py-4 px-5
+              bg-white/30 dark:bg-gray-800/30
+              backdrop-blur-lg
+              border border-gray-200 dark:border-gray-700
+              rounded-2xl
+              shadow-md
+              transition-transform duration-300 ease-in-out
+              hover:scale-102
+              hover:shadow-2xl
+            "
+            aria-expanded="false"
+          >
+            {item.question}
+            <!-- Ícono con animación al abrir/cerrar -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon transition-transform duration-300 group-open:rotate-180"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M7 7l10 10" />
+              <path d="M16 7l-9 0l0 9" />
+            </svg>
+          </summary>
+          <p class="text-gray-700 dark:text-gray-300 mt-3 px-5 pb-4 leading-relaxed">
+            {item.answer}
+          </p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- JSON-LD para SEO de FAQPage -->
+<script type="application/ld+json">
+  {JSON.stringify(faqJsonLd)}
+</script>
+
+<style>
+  /* ------------------------
+     ESTILOS ADICIONALES FAQ
+     ------------------------ */
+  /* Eliminar marcador por defecto del summary */
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  /* Asegurar que summary tenga cursor y outline-none */
+  .faq-item summary {
+    outline: none;
+  }
+  /* Ajuste de escala sutil */
+  .hover\:scale-102:hover {
+    transform: scale(1.02);
+  }
+</style>

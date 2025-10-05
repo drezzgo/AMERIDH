@@ -1,0 +1,52 @@
+---
+// src/components/Video.astro
+// Reemplaza estos valores con los datos reales de tu video
+const videoTitle = "Capacitación inteligente";
+const videoDescription = "Más rápida, más efectiva, más humana.";
+const videoUrl = "https://www.youtube.com/watch?v=KkV5ixolY7Q";
+const embedUrl = "https://fast.wistia.com/embed/3supae3fmr.js";
+const thumbnailUrl = "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg";
+const uploadDate = "2025-06-01T00:00:00Z";
+const durationISO = "PT2M30S"; // en formato ISO 8601, ej. PT2M30S = 2 minutos 30 segundos
+---
+<script src="https://fast.wistia.com/player.js" async></script>
+<section class="py-16 md:py-16 px-6 md:px-12 bg-white dark:bg-gray-900 transition-colors duration-300">
+  <div class="container mx-auto text-center">
+    <!-- Título -->
+    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+      {videoTitle}
+    </h2>
+    <!-- Descripción -->
+    <p class="text-lg text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto">
+      {videoDescription}
+    </p>
+
+    <!-- Contenedor responsivo 16:9 -->
+    <div class="w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden bg-white/10 dark:bg-gray-800/30 backdrop-blur-lg drop-shadow-2xl shadow-2xl">
+      <script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/3supae3fmr.js" async type="module"></script><style>wistia-player[media-id='3supae3fmr']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/3supae3fmr/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style> <wistia-player media-id="3supae3fmr" aspect="1.7777777777777777"></wistia-player>
+    </div>
+  </div>
+
+  <!-- JSON-LD para SEO: VideoObject -->
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": videoTitle,
+      "description": videoDescription,
+      "thumbnailUrl": [thumbnailUrl],
+      "uploadDate": uploadDate,
+      "duration": durationISO,
+      "contentUrl": videoUrl,
+      "embedUrl": embedUrl,
+      "publisher": {
+        "@type": "Organization",
+        "name": "CrearMedia",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://crearmedia.com/logo.png"
+        }
+      }
+    })}
+  </script>
+</section>

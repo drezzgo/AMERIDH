@@ -1,0 +1,148 @@
+---
+// src/components/Footer.astro
+
+const siteName = 'CrearMedia';
+const siteUrl = 'https://crearmedia.com';
+const siteDescription = 'Creamos experiencias que conectan con la realidad, el contexto y el propósito de cada equipo.';
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [ 
+  {
+    name: 'YouTube',
+    href: 'https://www.youtube.com/channel/UCnghI0JwEmFSKXOwhRHsGvg',
+    svg: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z" /></svg>`
+  }, 
+  {
+    name: 'Facebook',
+    href: 'https://www.facebook.com/crearmediamx',
+    svg: `<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>`
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/alejandroperezmolina/',
+    svg: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg>`
+  },
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/crear_media?igsh=MzZraHBtYjJhMWx2',
+    svg: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M16.5 7.5v.01" /></svg>`
+  }
+];
+
+const quickLinks = [
+  { label: 'Sobre nosotros', href: 'https://crearmedia.com/#somos' },
+  { label: 'Servicios', href: 'https://crearmedia.com/#servicios' },
+  { label: 'Testimoniales', href: 'https://crearmedia.com/#portafolio' },
+  { label: 'Contacto', href: 'https://crearmedia.com/formulario/' }
+];
+
+const contactInfo = [
+  {
+    type: 'email',
+    label: 'comercial@crearmedia.com',
+    href: 'mailto:comercial@crearmedia.com',
+    svg: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none" class="mr-2" stroke="currentColor"  stroke-width="1.5"  stroke-linecap="round" troke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-mail-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 19h-6a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v6" /><path d="M3 7l9 6l9 -6" /><path d="M15 19l2 2l4 -4" /></svg>`
+  },
+  {
+    type: 'phone',
+    label: '+52 55 11070674',
+    href: 'tel:+525511070674',
+    svg: `<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24" class="mr-2" fill="none"  stroke="currentColor"  stroke-width="1.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-device-mobile-message"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 3h10v8h-3l-4 2v-2h-3z" /><path d="M15 16v4a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1h2" /><path d="M10 18v.01" /></svg>`
+  }
+];
+---
+
+<footer class="bg-gray-900 text-white animate-fadeInUp">
+  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Company Info -->
+      <div class="md:col-span-2 space-y-4">
+        <a href="https://crearmedia.com"><h2 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cm-500 to-cm-100">{siteName}</h2></a>
+        <p class="text-gray-400">{siteDescription}</p>
+        <div class="flex space-x-4">
+          {socialLinks.map(link => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-400 hover:text-white transition-colors duration-300"
+              aria-label={link.name}
+              set:html={link.svg}
+            />
+          ))}
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <nav aria-label="Quick links">
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          {quickLinks.map(item => (
+            <li>
+              <a
+                href={item.href}
+                class="text-gray-400 hover:text-white transition-colors duration-300"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Contact Info -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+        <address class="not-italic space-y-2 text-gray-400">
+          {contactInfo.map(contact => (
+            <div class="flex items-center">
+              <span set:html={contact.svg} />
+              <a
+                href={contact.href}
+                class="hover:text-white transition-colors duration-300"
+              >
+                {contact.label}
+              </a>
+            </div>
+          ))}
+        </address>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+      <p class="text-gray-400">
+        © {currentYear} {siteName}. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+
+<script type="text/javascript"> _linkedin_partner_id = "7362274"; window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || []; window._linkedin_data_partner_ids.push(_linkedin_partner_id); </script><script type="text/javascript"> (function(l) { if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])}; window.lintrk.q=[]} var s = document.getElementsByTagName("script")[0]; var b = document.createElement("script"); b.type = "text/javascript";b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; s.parentNode.insertBefore(b, s);})(window.lintrk); </script> <noscript> <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=7362274&fmt=gif" /> </noscript>
+
+  <!-- Organization JSON-LD for SEO -->
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: siteName,
+      url: siteUrl,
+      description: siteDescription,
+      sameAs: socialLinks.map(link => link.href)
+    })}
+  </script>
+</footer>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out both;
+  }
+</style>

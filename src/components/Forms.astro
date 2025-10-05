@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// JSON-LD para SEO: evento y registro
+const eventJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Webinar Captación Automatizada",
+  "startDate": "2025-04-03T11:00:00-05:00",
+  "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "organizer": {
+    "@type": "Organization",
+    "name": "CrearMedia",
+    "url": "https://crearmedia.com"
+  },
+  "potentialAction": {
+    "@type": "RegisterAction",
+    "target": "https://crearmedia.com/webinar#form-section"
+  }
+};
+---
+<section id="form-section" class="py-16 md:py-24 px-6 md:px-12 bg-white dark:bg-gray-900 transition-colors duration-300">
+  <div class="container mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-9 items-center">
+    
+    <!-- COLUMNA IZQUIERDA: TÍTULO, DESCRIPCIÓN, CTA -->
+    <div class="text-center md:text-left space-y-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100">
+        ¡Reserva tu acceso ahora!<br>
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-cm-500 to-teal-500">
+          Cupos limitados
+        </span>
+      </h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300">
+        Este entrenamiento no estará disponible por mucho tiempo. Completa el formulario y descubre cómo aplicar el modelo adaptativo en tu empresa.
+      </p>
+      <button
+        id="cta-button"
+        class="relative inline-flex items-center justify-center bg-gradient-to-r from-cm-500 to-teal-500 text-white font-semibold text-lg py-3 px-8 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl"
+        aria-label="Mostrar formulario de registro"
+      >
+        Reserva tu cupo ahora
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+          <path d="M5 12l14 0" />
+          <path d="M15 16l4 -4" />
+          <path d="M15 8l4 4" />
+        </svg>
+      </button>
+    </div>
+
+   <!-- COLUMNA DERECHA: FORMULARIO MAILCHIMP -->
+    <div id="form-container"
+         class="relative bg-white/30 dark:bg-gray-800/30 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-xl p-8 shadow-lg transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-2xl"
+    >
+      <h3 class="text-2xl font-semibold text-center mb-6 text-gray-900 dark:text-gray-100">
+        Regístrate Gratis
+      </h3>
+
+              <!-- IFRAME OCULTO para enviar los datos sin navegar -->
+        <iframe name="hidden_iframe" class="hidden" aria-hidden="true"></iframe>
+
+        <!-- BEGIN MAILCHIMP FORM -->
+        <form
+          action="https://crearmedia.us22.list-manage.com/subscribe/post?u=5e85e811661c86bf4a67e94b4&amp;id=bdaa8f260d&amp;f_id=00e4c2e1f0"
+          method="post"
+          id="mc-embedded-subscribe-form"
+          name="mc-embedded-subscribe-form"
+          class="validate space-y-6"
+          target="hidden_iframe"
+        >
+          <div id="mc_embed_signup_scroll">
+            <!-- EMAIL (obligatorio) -->
+            <div>
+              <label for="mce-EMAIL" class="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">
+                Correo electrónico <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                name="EMAIL"
+                id="mce-EMAIL"
+                required
+                class="mt-1 block w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring focus:ring-cm-500 focus:border-cm-500 transition-colors duration-200"
+                placeholder="ejemplo@correo.com"
+              />
+            </div>
+
+            <!-- NOMBRE (obligatorio) -->
+            <div>
+              <label for="mce-FNAME" class="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">
+                Nombre completo <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="FNAME"
+                id="mce-FNAME"
+                required
+                class="mt-1 block w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring focus:ring-cm-500 focus:border-cm-500 transition-colors duration-200"
+                placeholder="Tu nombre completo"
+              />
+            </div>
+
+            <!-- WHATSAPP (opcional) -->
+            <div>
+              <label for="mce-PHONE" class="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">
+                Número de WhatsApp (Opcional)
+              </label>
+              <input
+                type="tel"
+                name="PHONE"
+                id="mce-PHONE"
+                class="mt-1 block w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring focus:ring-cm-500 focus:border-cm-500 transition-colors duration-200"
+                placeholder="+57 300 1234 567"
+              />
+            </div>
+
+            <!-- TÉRMINOS Y CONDICIONES (obligatorio) -->
+            <div>
+              <label class="flex items-center text-sm text-gray-800 dark:text-gray-200">
+                <input
+                  type="checkbox"
+                  name="TERMS"
+                  id="mc-TERMS"
+                  required
+                  class="h-4 w-4 text-cm-500 border-gray-300 rounded focus:ring-cm-500"
+                />
+                <span class="ml-2">
+                  Acepto los
+                  <a href="https://crearmedia.com/privacy-policy/" class="underline hover:text-cm-500" target="_blank">
+                    Términos y Condiciones
+                  </a>
+                  <span class="text-red-500">*</span>
+                </span>
+              </label>
+            </div>
+
+            <!-- RESPUESTAS DE MAILCHIMP -->
+            <div id="mce-responses" class="clear foot mb-4">
+              <div class="response hidden p-3 rounded-md bg-red-100 text-red-700" id="mce-error-response"></div>
+              <div class="response hidden p-3 rounded-md bg-green-100 text-green-700" id="mce-success-response"></div>
+            </div>
+
+            <!-- HONEYPOT -->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+              <input type="text" name="b_5e85e811661c86bf4a67e94b4_bdaa8f260d" tabindex="-1" value="" />
+            </div>
+
+            <!-- BOTÓN SUSCRIBIRSE -->
+            <div>
+              <input
+                type="submit"
+                value="Subscribe"
+                name="subscribe"
+                id="mc-embedded-subscribe"
+                class="w-full inline-flex items-center justify-center bg-gradient-to-r from-cm-500 to-teal-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl"
+              />
+            </div>
+          </div>
+        </form>
+        <!-- END MAILCHIMP FORM -->
+
+    </div>
+  </div>
+
+  <!-- JSON-LD para SEO -->
+  <script type="application/ld+json">
+    {JSON.stringify(eventJsonLd)}
+  </script>
+
+  <!-- Mailchimp validation script -->
+  <script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+  <script type="text/javascript">
+    (function($) {
+      window.fnames = [];
+      window.ftypes = [];
+      fnames[0] = 'EMAIL'; ftypes[0] = 'email';
+      fnames[1] = 'FNAME'; ftypes[1] = 'text';
+      fnames[4] = 'PHONE'; ftypes[4] = 'phone';
+      fnames[2] = 'MMERGE2'; ftypes[2] = 'text';
+      fnames[3] = 'MMERGE3'; ftypes[3] = 'text';
+      fnames[5]='FECHA';ftypes[5]='date';
+    })(jQuery);
+    var $mcj = jQuery.noConflict(true);
+  </script>
+  
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('mc-embedded-subscribe-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        // Tras 700ms redirige al usuario a la página de gracias
+        setTimeout(() => {
+          window.location.href = 'https://crearmedia.com/webinar/gracias';
+        }, 700);
+      });
+    }
+  });
+</script>
+
+<div>
+</div>

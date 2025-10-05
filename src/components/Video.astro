@@ -1,52 +1,123 @@
 ---
-// src/components/Video.astro
-// Reemplaza estos valores con los datos reales de tu video
-const videoTitle = "Capacitación inteligente";
-const videoDescription = "Más rápida, más efectiva, más humana.";
-const videoUrl = "https://www.youtube.com/watch?v=KkV5ixolY7Q";
-const embedUrl = "https://fast.wistia.com/embed/3supae3fmr.js";
-const thumbnailUrl = "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg";
-const uploadDate = "2025-06-01T00:00:00Z";
-const durationISO = "PT2M30S"; // en formato ISO 8601, ej. PT2M30S = 2 minutos 30 segundos
+const videoTitle = "Conoce nuestro ";
+const textoHighlight = "modelo para capacitar con IA adaptativa";
+const videoTitle2 = " que las empresas más avanzadas ya están usando para medir, personalizar y optimizar el desempeño en tiempo real.";
+const fullText = `${videoTitle}${textoHighlight}${videoTitle2}`;
+// Precompute index boundaries so we can render numbers into the client script safely
+const P1_END = videoTitle.length;
+const P2_END = P1_END + textoHighlight.length;
+const P3_END = P2_END + videoTitle2.length;
 ---
-<script src="https://fast.wistia.com/player.js" async></script>
+
 <section class="py-16 md:py-16 px-6 md:px-12 bg-white dark:bg-gray-900 transition-colors duration-300">
   <div class="container mx-auto text-center">
-    <!-- Título -->
-    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
-      {videoTitle}
+    <h2 class="mx-auto max-w-4xl text-2 md:text-3xl font-bold mb-10 text-gray-900 dark:text-gray-100 leading-snug">
+      <!-- Texto real para lectores de pantalla (no animado) -->
+      <span class="sr-only">{fullText}</span>
+
+  <!-- Contenedor visible con animación. Pasamos datos necesarios al script con data-attributes -->
+  <span id="typed-title" class="relative inline-block align-top" aria-hidden="true"
+    data-full={fullText}
+    data-p1-end={P1_END}
+    data-p2-end={P2_END}
+    data-p3-end={P3_END}
+  ></span>
     </h2>
-    <!-- Descripción -->
-    <p class="text-lg text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto">
-      {videoDescription}
-    </p>
-
-    <!-- Contenedor responsivo 16:9 -->
-    <div class="w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden bg-white/10 dark:bg-gray-800/30 backdrop-blur-lg drop-shadow-2xl shadow-2xl">
-      <script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/3supae3fmr.js" async type="module"></script><style>wistia-player[media-id='3supae3fmr']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/3supae3fmr/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style> <wistia-player media-id="3supae3fmr" aspect="1.7777777777777777"></wistia-player>
-    </div>
   </div>
-
-  <!-- JSON-LD para SEO: VideoObject -->
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "name": videoTitle,
-      "description": videoDescription,
-      "thumbnailUrl": [thumbnailUrl],
-      "uploadDate": uploadDate,
-      "duration": durationISO,
-      "contentUrl": videoUrl,
-      "embedUrl": embedUrl,
-      "publisher": {
-        "@type": "Organization",
-        "name": "CrearMedia",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://crearmedia.com/logo.png"
-        }
-      }
-    })}
-  </script>
 </section>
+
+<style>
+  /* Caret del “typewriter” */
+  #typed-title::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    margin-left: 2px;
+    vertical-align: -0.2em;
+    background: currentColor;
+    animation: caret-blink 1s steps(1, end) infinite;
+  }
+  .done-typing::after { display: none; }
+
+  @keyframes caret-blink {
+    50% { opacity: 0; }
+  }
+
+  /* Flotado sutil del highlight (solo si el usuario no reduce animación) */
+  @media (prefers-reduced-motion: no-preference) {
+    .float-soft {
+      animation: float-soft 6s ease-in-out infinite;
+      will-change: transform;
+    }
+    @keyframes float-soft {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const el = document.getElementById('typed-title');
+    if (!el) return;
+
+    const full = String(el.dataset.full || '');
+    const P1_END = parseInt(el.dataset.p1End || '0', 10);
+    const P2_END = parseInt(el.dataset.p2End || '0', 10);
+    const P3_END = parseInt(el.dataset.p3End || String(full.length), 10);
+    const highlightClass = 'bg-clip-text text-transparent bg-gradient-to-r from-cm-500 to-teal-500 float-soft';
+
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Helper to render full text with highlighted middle part
+    function renderFull() {
+      el.innerHTML = [
+        full.slice(0, P1_END),
+        `<span class="${highlightClass}">` + full.slice(P1_END, P2_END) + '</span>',
+        full.slice(P2_END, P3_END)
+      ].join('');
+    }
+
+    if (prefersReduced) {
+      renderFull();
+      // small visual fade-in for non-motion-averse users only (we still respect reduced motion by skipping animations)
+      el.style.opacity = '0';
+      requestAnimationFrame(() => {
+        el.style.transition = 'opacity 180ms ease';
+        el.style.opacity = '1';
+      });
+      return;
+    }
+
+    // Typing effect
+    const SPEED = 22; // ms per character
+    let i = 0;
+
+    function buildHTML(count) {
+      const a = Math.min(count, P1_END);
+      const b = Math.max(0, Math.min(count - P1_END, P2_END - P1_END));
+      const c = Math.max(0, Math.min(count - P2_END, P3_END - P2_END));
+
+      const s1 = full.slice(0, a);
+      const s2 = full.slice(P1_END, P1_END + b);
+      const s3 = full.slice(P2_END, P2_END + c);
+
+      const part2Wrapped = b > 0 ? `<span class="${highlightClass}">${s2}</span>` : (count > P1_END ? `<span class="${highlightClass}"></span>` : '');
+      return s1 + part2Wrapped + s3;
+    }
+
+    function frame() {
+      i++;
+      el.innerHTML = buildHTML(i);
+      if (i < full.length) {
+        setTimeout(frame, SPEED);
+      } else {
+        el.classList.add('done-typing');
+      }
+    }
+
+    requestAnimationFrame(frame);
+  })();
+</script>

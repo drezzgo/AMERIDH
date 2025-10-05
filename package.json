@@ -10,12 +10,13 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.1",
-    "@tailwindcss/vite": "^4.1.8",
-    "tailwindcss": "^4.1.8"
+    "@tailwindcss/vite": "^4.1.8"
   },
   "devDependencies": {
+    "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.14.1",
     "prettier": "^3.5.3",
-    "prettier-plugin-tailwindcss": "^0.6.12"
+    "prettier-plugin-tailwindcss": "^0.6.12",
+    "tailwindcss": "^4.1.14"
   }
 }

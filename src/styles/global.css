@@ -18,6 +18,74 @@
     --cm-500: var(--color-cm-500);
 }
 
+/* Usa tu token si existe; si no, cae a #5eba47 */
+:root { --cm: var(--color-cm-500, #5eba47); }
+
+/* Capa de estrellas (patrón repetido en 3 tamaños/offsets) */
+.has-galaxy::before {
+  content: "";
+  position: fixed;
+  inset: -10vh -10vw;                 /* se extiende para evitar líneas en el borde */
+  z-index: -1;
+  pointer-events: none;
+  opacity: .28;                        /* densidad global */
+  mix-blend-mode: screen;
+
+  /* Tres capas de puntos repetidos con diferentes tamaños/offsets
+     para romper el “efecto rejilla” */
+  background-repeat: repeat, repeat, repeat;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 1.2px),
+    radial-gradient(circle, color-mix(in oklab, var(--cm), white 20%) 1px, transparent 1.2px),
+    radial-gradient(circle, rgba(255,255,255,.65) .8px, transparent 1px);
+  background-size:   3px 3px, 4px 4px, 5px 5px;
+  background-position: 0 0, 40px 60px, -30px -50px;
+
+  /* Animación sutil: deriva horizontal/vertical muy lenta + parpadeo global */
+  animation:
+    galaxy-drift 120s linear infinite,
+    galaxy-twinkle 8s ease-in-out infinite alternate;
+}
+
+/* Halo superior suave (degradado de marca para ocultar “línea” entre secciones) */
+.has-galaxy::after {
+  content: "";
+  position: fixed;
+  inset: -20vh -10vw 0;               /* arranca antes de la sección */
+  z-index: -1;
+  pointer-events: none;
+  opacity: .45;
+  mix-blend-mode: screen;
+  filter: blur(2px);
+  background:
+    radial-gradient(1000px 500px at 50% -300px,
+      color-mix(in oklab, var(--cm), transparent 75%),
+      transparent 70%);
+  animation: halo-pulse 10s ease-in-out infinite alternate;
+}
+
+/* Animaciones */
+@keyframes galaxy-drift {
+  0%   { background-position: 0 0, 40px 60px, -30px -50px; }
+  100% { background-position: 2000px 0, -1600px 320px, 900px -450px; }
+}
+@keyframes galaxy-twinkle {
+  0%,100% { opacity: .24; filter: none; }
+  50%     { opacity: .38;  filter: brightness(1.06) saturate(1.05); }
+}
+@keyframes halo-pulse { from { opacity:.35 } to { opacity:.55 } }
+
+/* Modo oscuro: un poco más visible */
+@media (prefers-color-scheme: dark) {
+  .has-galaxy::before { opacity: .36; }
+}
+
+/* Accesibilidad: sin movimiento si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  .has-galaxy::before, .has-galaxy::after { animation: none !important; }
+}
+
+
 /* Accessible utilities */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
